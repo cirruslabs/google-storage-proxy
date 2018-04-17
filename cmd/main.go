@@ -14,7 +14,7 @@ func main() {
 	var bucketName string
 	flag.StringVar(&bucketName, "bucket", "", "Google Storage Bucket Name")
 	var defaultPrefix string
-	flag.StringVar(&defaultPrefix, "prefix", "", "Default prefix for all object names. For example, use --prefix=foo/.")
+	flag.StringVar(&defaultPrefix, "prefix", "", "Optional prefix for all objects. For example, use --prefix=foo/ to work under foo directory in a bucket.")
 	flag.Parse()
 
 	if bucketName == "" {
