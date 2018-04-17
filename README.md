@@ -1,4 +1,4 @@
-[![Build Status](https://api.cirrus-ci.com/github/cirruslabs/google-storage-proxy.svg)](https://cirrus-ci.com/github/cirruslabs/google-storage-proxy>)
+[![Build Status](https://api.cirrus-ci.com/github/cirruslabs/google-storage-proxy.svg)](https://cirrus-ci.com/github/cirruslabs/google-storage-proxy)
 
 HTTP proxy with REST API to interact with Google Cloud Storage Buckets
 
