@@ -7,15 +7,3 @@ test_task:
   get_script: go get -t -v ./...
   vet_script: go vet -v ./...
   test_script: go test -v ./...
-
-deploy_docker_builder:
-  only_if: $CIRRUS_BRANCH == "master"
-  depends_on: test
-  environment:
-    DOCKER_USER_NAME: ENCRYPTED[eaaa871d57af7606fbdca13f52daa999e27e02f167611c622dfeea539f5939d2d540e5833a366303c05be08b05c3c33d]
-    DOCKER_PASSWORD: ENCRYPTED[61d7105b225c7aae7fabe036dff68618f31ec89ac6ccd16b00d9de69c80ceb7aec02e3c5b9c19aa24379553177fc5b00]
-  build_script:
-    - docker build --tag cirrusci/google-storage-proxy:latest .
-  push_script:
-    - docker login --username $DOCKER_USER_NAME --password $DOCKER_PASSWORD
-    - docker push cirrusci/google-storage-proxy:latest
