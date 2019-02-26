@@ -2,9 +2,9 @@ package http_cache
 
 import (
 	"bufio"
+	"cloud.google.com/go/storage"
 	"context"
 	"fmt"
-	"cloud.google.com/go/storage"
 	"log"
 	"net"
 	"net/http"
@@ -100,9 +100,9 @@ func (proxy StorageProxy) uploadBlob(w http.ResponseWriter, r *http.Request, nam
 
 	_, err := bufio.NewWriter(writer).ReadFrom(bufio.NewReader(r.Body))
 	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
 		errorMsg := fmt.Sprintf("Failed read cache body! %s", err)
 		w.Write([]byte(errorMsg))
-		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 	w.WriteHeader(http.StatusCreated)
