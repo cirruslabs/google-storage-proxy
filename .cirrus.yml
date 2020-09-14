@@ -1,9 +1,13 @@
 container:
-  image: golang:1.10
+  image: golang:latest
+
+env:
+  GOPROXY: https://proxy.golang.org
 
 test_task:
-  env:
-    CIRRUS_WORKING_DIR: /go/src/github.com/$CIRRUS_REPO_FULL_NAME
-  get_script: go get -t -v ./...
-  vet_script: go vet -v ./...
-  test_script: go test -v ./...
+  modules_cache:
+    fingerprint_script: cat go.sum
+    folder: $GOPATH/pkg/mod
+  get_script: go get ./...
+  build_script: go build ./...
+  test_script: go test ./...
