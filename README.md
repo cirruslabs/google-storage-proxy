@@ -5,10 +5,10 @@ HTTP proxy with REST API to interact with Google Cloud Storage Buckets
 Simply allows using `HEAD`, `GET` or `PUT` requests to check blob's availability, as well as downloading or uploading
 blobs to a specified GCS bucket.
 
-Prebuilt Docker image is available on GitHub's Container Registry:
+Prebuilt Docker image is available on Docker Hub:
 
 ```bash
-docker pull ghcr.io/cirruslabs/google-storage-proxy:latest
+docker pull cirrusci/google-storage-proxy:latest
 ```
 
 # Arguments
