@@ -5,7 +5,7 @@ ADD . /build
 
 RUN go get -t -v ./... && \
     go test -v ./... && \
-    go build -o google-storage-proxy ./cmd/
+    CGO_ENABLED=0 go build -o google-storage-proxy ./cmd/
 
 FROM alpine:latest
 LABEL org.opencontainers.image.source=https://github.com/cirruslabs/google-storage-proxy/
