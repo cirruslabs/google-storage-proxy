@@ -9,6 +9,8 @@ import (
 )
 
 func main() {
+	var address string
+	flag.StringVar(&address, "address", "127.0.0.1", "Address to listen on")
 	var port int64
 	flag.Int64Var(&port, "port", 8080, "Port to serve")
 	var bucketName string
@@ -29,7 +31,7 @@ func main() {
 	bucketHandler := client.Bucket(bucketName)
 	storageProxy := http_cache.NewStorageProxy(bucketHandler, defaultPrefix)
 
-	err = storageProxy.Serve(port)
+	err = storageProxy.Serve(address, port)
 	if err != nil {
 		log.Fatalf("Failed to start proxy: %s", err)
 	}

@@ -26,10 +26,10 @@ func (proxy StorageProxy) objectName(name string) string {
 	return proxy.defaultPrefix + name
 }
 
-func (proxy StorageProxy) Serve(port int64) error {
+func (proxy StorageProxy) Serve(address string, port int64) error {
 	http.HandleFunc("/", proxy.handler)
 
-	listener, err := net.Listen("tcp", fmt.Sprintf("127.0.0.1:%d", port))
+	listener, err := net.Listen("tcp", fmt.Sprintf("%s:%d", address, port))
 
 	if err == nil {
 		address := listener.Addr().String()
