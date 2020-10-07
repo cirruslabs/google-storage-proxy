@@ -98,12 +98,25 @@ func (proxy StorageProxy) uploadBlob(w http.ResponseWriter, r *http.Request, nam
 	writer := object.NewWriter(context.Background())
 	defer writer.Close()
 
-	_, err := bufio.NewWriter(writer).ReadFrom(bufio.NewReader(r.Body))
+	bufferedWriter := bufio.NewWriter(writer)
+	bufferedReader := bufio.NewReader(r.Body)
+
+	_, err := bufferedWriter.ReadFrom(bufferedReader)
 	if err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		errorMsg := fmt.Sprintf("Failed read cache body! %s", err)
-		w.Write([]byte(errorMsg))
+		uploadBlobFailedResponse(w, err)
 		return
 	}
+
+	if err := bufferedWriter.Flush(); err != nil {
+		uploadBlobFailedResponse(w, err)
+		return
+	}
+
 	w.WriteHeader(http.StatusCreated)
+}
+
+func uploadBlobFailedResponse(w http.ResponseWriter, err error) {
+	w.WriteHeader(http.StatusBadRequest)
+	errorMsg := fmt.Sprintf("Blob upload failed: %v", err)
+	w.Write([]byte(errorMsg))
 }
