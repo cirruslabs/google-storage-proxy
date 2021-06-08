@@ -72,7 +72,6 @@ func (proxy StorageProxy) downloadBlob(w http.ResponseWriter, name string) {
 	_, err = bufferedReader.WriteTo(w)
 	if err != nil {
 		log.Printf("Failed to serve blob %q: %v", name, err)
-		return
 	}
 }
 
