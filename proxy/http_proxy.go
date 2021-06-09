@@ -71,10 +71,8 @@ func (proxy StorageProxy) downloadBlob(w http.ResponseWriter, name string) {
 	bufferedReader := bufio.NewReader(reader)
 	_, err = bufferedReader.WriteTo(w)
 	if err != nil {
-		w.WriteHeader(http.StatusNotFound)
-		return
+		log.Printf("Failed to serve blob %q: %v", name, err)
 	}
-	w.WriteHeader(http.StatusOK)
 }
 
 func (proxy StorageProxy) checkBlobExists(w http.ResponseWriter, name string) {
