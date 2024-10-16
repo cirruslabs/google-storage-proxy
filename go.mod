@@ -1,4 +1,4 @@
-module github.com/cirruslabs/google-storage-proxy
+module github.com/zencargo/google-storage-proxy
 
 go 1.15
 

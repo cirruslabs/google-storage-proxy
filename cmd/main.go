@@ -1,11 +1,12 @@
 package main
 
 import (
-	"cloud.google.com/go/storage"
 	"context"
 	"flag"
-	"github.com/cirruslabs/google-storage-proxy/proxy"
 	"log"
+
+	"cloud.google.com/go/storage"
+	"github.com/zencargo/google-storage-proxy/proxy"
 )
 
 func main() {

@@ -2,12 +2,13 @@ package http_cache
 
 import (
 	"bufio"
-	"cloud.google.com/go/storage"
 	"context"
 	"fmt"
 	"log"
 	"net"
 	"net/http"
+
+	"cloud.google.com/go/storage"
 )
 
 type StorageProxy struct {
@@ -35,6 +36,7 @@ func (proxy StorageProxy) Serve(address string, port int64) error {
 		address := listener.Addr().String()
 		listener.Close()
 		log.Printf("Starting http cache server %s\n", address)
+		log.Printf("This is the new version")
 		return http.ListenAndServe(address, nil)
 	}
 	return err

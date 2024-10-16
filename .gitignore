@@ -16,3 +16,7 @@
 # IntelliJ
 .idea/
 *.iml
+
+# Ignore K8s deployment
+deployment.yaml
+service.yaml
